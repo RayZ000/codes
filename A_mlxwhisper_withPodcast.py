@@ -27,6 +27,15 @@ PROGRESS_INTERVAL = 300
 MODEL_ID = "mlx-community/whisper-large-v3-turbo"
 # ----------------------
 
+
+def is_audio_file(filename: str) -> bool:
+    """Check if a file is an audio file based on its extension."""
+    return any(filename.lower().endswith(ext) for ext in AUDIO_EXTENSIONS)
+
+def is_video_file(filename: str) -> bool:
+    """Check if a file is a video file based on its extension."""
+    return any(filename.lower().endswith(ext) for ext in VIDEO_EXTENSIONS)
+
 # Process each folder in AUDIO_FOLDERS along with their corresponding podcast feed
 for folder, feed in zip(AUDIO_FOLDERS, PODCAST_FEEDS):
     # Run the podcast-archiver command to update podcasts for this folder
