@@ -103,4 +103,23 @@ for folder, feed in zip(AUDIO_FOLDERS, PODCAST_FEEDS):
         if is_video_file(filename) and os.path.exists(temp_audio_path):
             os.remove(temp_audio_path) 
 
+
+
+# # Replace transcribed .mp3 files with empty placeholder files.
+# for folder in AUDIO_FOLDERS:
+#     for filename in os.listdir(folder):
+#         # Process only .mp3 files
+#         if filename.lower().endswith(".mp3"):
+#             base_name = os.path.splitext(filename)[0]
+#             transcript_file = os.path.join(folder, base_name + ".txt")
+#             mp3_file = os.path.join(folder, filename)
+#             # If a transcript exists for this file, consider it transcribed
+#             if os.path.exists(transcript_file):
+#                 print(f"Replacing {mp3_file} with a placeholder file.")
+#                 # Remove the original .mp3 file
+#                 os.remove(mp3_file)
+#                 # Create an empty (0-byte) placeholder .mp3 file
+#                 with open(mp3_file, "wb") as f:
+#                     pass  # Creates an empty file
+
 # %%
