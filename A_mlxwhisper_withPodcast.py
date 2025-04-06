@@ -5,8 +5,11 @@ import mlx_whisper
 
 # --- Configuration ---
 AUDIO_FOLDERS = [
-    '/Volumes/HezeORICO/life/Huberman Lab', '/Volumes/HezeORICO/life/独树不成林' # , '/path/to/third/folder'
+    '/Volumes/HezeORICO/life/Huberman Lab', 
+    '/Volumes/HezeORICO/life/独树不成林' # , '/path/to/third/folder'
 ]
+
+PARENT_FOLDER =  '/Volumes/HezeORICO/life'  # Replace with the actual parent folder path
 
 # New: Podcast feed URLs corresponding to each folder
 PODCAST_FEEDS = [
@@ -27,7 +30,8 @@ MODEL_ID = "mlx-community/whisper-large-v3-turbo"
 # Process each folder in AUDIO_FOLDERS along with their corresponding podcast feed
 for folder, feed in zip(AUDIO_FOLDERS, PODCAST_FEEDS):
     # Run the podcast-archiver command to update podcasts for this folder
-    update_cmd = ["podcast-archiver", "--dir", folder, "--feed", feed]
+    # parent_folder is the directory where the podcast-archiver will save the files (automatically look for subfolders)
+    update_cmd = ["podcast-archiver", "--dir", PARENT_FOLDER, "--feed", feed]
     print(f"\nUpdating podcast for folder: {folder} with feed: {feed}")
     subprocess.run(update_cmd, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     
