@@ -11,12 +11,12 @@ import time
 start_time = time.time()
 
 # Define file paths and parameters
-input_file = '/Volumes/HezeSamsung/Lectures/MAR/pod0401/text.md'
+input_file = '/Volumes/HezeSamsung/Lectures/MAR/pod0422/text.md'
+# Set the desired name for the final merged WAV file
+final_wav_filename = "MARpod0422.wav"
 # Change this to your desired output folder where the WAV files will be created
 output_folder = '/Volumes/HezeSamsung/Podcast'
 model_name = "mlx-community/Kokoro-82M-8bit"
-# Set the desired name for the final merged WAV file
-final_wav_filename = "MARpod0401.wav"
 
 # MARpod0310_midterm2
 # 0303ML_in_S-SNOM

@@ -1,22 +1,30 @@
 # %%
+# ToDo: test the behavior of podcast-archiver with placeholder mp3 files
+
 import os
 import subprocess
 import mlx_whisper
+import shutil
 
 # --- Configuration ---
 AUDIO_FOLDERS = [
     '/Volumes/HezeORICO/life/Huberman Lab', 
-    '/Volumes/HezeORICO/life/独树不成林' # , '/path/to/third/folder'
+    '/Volumes/HezeORICO/life/独树不成林', 
+    '/Volumes/HezeORICO/life/Lex Fridman Podcast' # , '/path/to/third/folder'
 ]
 
 PARENT_FOLDER =  '/Volumes/HezeORICO/life'  # Replace with the actual parent folder path
 
 # New: Podcast feed URLs corresponding to each folder
 PODCAST_FEEDS = [
-    'https://example.com/feed1.rss',  # Replace with the actual feed URL for the first folder
-    'https://example.com/feed2.rss'   # Replace with the actual feed URL for the second folder
+    'https://podcasts.apple.com/hk/podcast/huberman-lab/id1545953110',  # Replace with the actual feed URL for the first folder
+    'https://podcasts.apple.com/hk/podcast/%E7%8B%AC%E6%A0%91%E4%B8%8D%E6%88%90%E6%9E%97/id1711052890',
+    'https://podcasts.apple.com/hk/podcast/lex-fridman-podcast/id1434243584' # Replace with the actual feed URL for the second folder
     # Add more feeds as needed
 ]
+
+# Destination base folder for backup of processed audio folders. Replace with your desired destination path.
+DESTINATION_BASE_FOLDER = '/Volumes/HezeSamsung/life'
 
 # Audio file extensions
 AUDIO_EXTENSIONS = [".wav", ".mp3", ".flac", ".ogg", ".m4a"]
@@ -105,21 +113,31 @@ for folder, feed in zip(AUDIO_FOLDERS, PODCAST_FEEDS):
 
 
 
-# # Replace transcribed .mp3 files with empty placeholder files.
-# for folder in AUDIO_FOLDERS:
-#     for filename in os.listdir(folder):
-#         # Process only .mp3 files
-#         if filename.lower().endswith(".mp3"):
-#             base_name = os.path.splitext(filename)[0]
-#             transcript_file = os.path.join(folder, base_name + ".txt")
-#             mp3_file = os.path.join(folder, filename)
-#             # If a transcript exists for this file, consider it transcribed
-#             if os.path.exists(transcript_file):
-#                 print(f"Replacing {mp3_file} with a placeholder file.")
-#                 # Remove the original .mp3 file
-#                 os.remove(mp3_file)
-#                 # Create an empty (0-byte) placeholder .mp3 file
-#                 with open(mp3_file, "wb") as f:
-#                     pass  # Creates an empty file
+# Replace transcribed audio and video files with empty placeholder files.
+for folder in AUDIO_FOLDERS:
+    for filename in os.listdir(folder):
+        # Process only audio or video files using defined helper functions
+        if is_audio_file(filename) or is_video_file(filename):
+            base_name = os.path.splitext(filename)[0]
+            transcript_file = os.path.join(folder, base_name + ".txt")
+            file_path = os.path.join(folder, filename)
+            # If a transcript exists for this file, consider it transcribed
+            if os.path.exists(transcript_file):
+                print(f"Replacing {file_path} with a placeholder file.")
+                # Remove the original file
+                os.remove(file_path)
+                # Create an empty (0-byte) placeholder file
+                with open(file_path, "wb") as f:
+                    pass  # Creates an empty file
 
+
+# Copy processed audio folders to the backup destination
+print("\nCopying processed audio folders to backup destination:")
+for folder in AUDIO_FOLDERS:
+    # Get the folder name (e.g., 'Huberman Lab') from the folder path
+    folder_name = os.path.basename(os.path.normpath(folder))
+    destination_folder = os.path.join(DESTINATION_BASE_FOLDER, folder_name)
+    print(f"Copying contents of {folder} to {destination_folder}")
+    # Recursively copy the folder and its contents. dirs_exist_ok=True allows merging if the folder exists.
+    shutil.copytree(folder, destination_folder, dirs_exist_ok=True)
 # %%

@@ -5,8 +5,10 @@ import mlx_whisper
 
 # --- Configuration ---
 AUDIO_FOLDERS = [
-    '/Volumes/HezeORICO/life/Huberman Lab', '/Volumes/HezeORICO/life/独树不成林'# , '/path/to/third/folder'
+    '/Volumes/HezeSamsung/Lectures/MAR/Rec'# , '/path/to/third/folder'
 ]
+
+# '/Volumes/HezeSamsung/Lectures/MAR/Rec'
 
 # Audio file extensions
 AUDIO_EXTENSIONS = [".wav", ".mp3", ".flac", ".ogg", ".m4a"]

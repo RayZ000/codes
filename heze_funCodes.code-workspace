@@ -9,13 +9,11 @@
             "huggingface1": {
                 "path": "/bin/zsh",
                 "args": [
-                    "-l",
-                    "-c",
-                    "source /Volumes/HezeSamsung/Conda/anaconda3/etc/profile.d/conda.sh && conda deactivate && conda activate huggingface1 && exec zsh"
+
                 ]
             }
         },
         "terminal.integrated.defaultProfile.osx": "huggingface1",
-        "python.defaultInterpreterPath": "/Volumes/HezeSamsung/Conda/anaconda3/envs/huggingface1/bin/python"
+        "python.defaultInterpreterPath": ""
     }
 }

@@ -3,7 +3,6 @@ Example Usages:
 
 1. Processing PDF Files (using a list of PDFs):
    python A_mlxOlmOCR.py --pdfs /path/to/file1.pdf /path/to/file2.pdf --output-dir ./outputs
-
 2. Processing a PDF Folder:
    python A_mlxOlmOCR.py --pdf-folder /path/to/pdf_folder --output-dir ./outputs
 

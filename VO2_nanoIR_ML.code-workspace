@@ -5,5 +5,9 @@
 			"path": "../../../../Volumes/HezeSamsung/Research/VO2_nanoIR_ML"
 		}
 	],
-	"settings": {}
+	"settings": {
+		"cSpell.words": [
+			"superstrate"
+		]
+	}
 }
